@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:57 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/18 21:26:34 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:41:36 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <strings.h>
+typedef struct s_pipex
+{
+	char **path;
+	char **pathCmd;
+    
+} t_pipex;
 
 size_t ft_strlen(const char *s);
 void ft_putstr_fd(char *s, int fd);
