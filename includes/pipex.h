@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:57 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/18 21:00:56 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:26:34 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ size_t ft_strlcpy(char *dest, const char *src, size_t size);
 char *ft_strjoin(char const *s1, char const *s2);
 char *ft_strdup(const char *s);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
+char	**ft_split(char const *s, char c);
 #endif

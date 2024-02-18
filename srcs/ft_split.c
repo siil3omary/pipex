@@ -6,13 +6,13 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:51:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/18 21:10:46 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:24:44 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-static size_t	word_count(const char *str, char c)
+size_t	word_count(const char *str, char c)
 {
 	size_t	count;
 	size_t	i;
@@ -28,7 +28,7 @@ static size_t	word_count(const char *str, char c)
 	return (count);
 }
 
-static void	*free_all(char **sp)
+void	*free_all(char **sp)
 {
 	size_t	j;
 
