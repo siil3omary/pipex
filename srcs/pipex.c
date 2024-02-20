@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:06 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/20 17:46:19 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:01:23 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,24 @@ int	main(int ac, char **av, char **env)
 		int j = 0;
 		while (pipex.pathCmd[j])
 		{
-			printf("%s\n", pipex.pathCmd[j]);
-			j++;
+            pipex.tmp = ft_strjoin(pipex.pathCmd[j], "/");
+            pipex.tmp2 = ft_strjoin(pipex.tmp, av[2]);
+            free(pipex.pathCmd[j]);
+            free(pipex.tmp);
+            pipex.pathCmd[j] = pipex.tmp2;
+            j++;
 		}
+
+        
+        j = 0;
+        while (pipex.pathCmd[j])
+        {
+            printf("%s\n", pipex.pathCmd[j]);
+            j++;
+        }
+        
+      
+        
 
 		free(pipex.path[0]);
 		system("leaks  pipex");
