@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:57 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/20 21:58:39 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:16:27 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_pipex
 
 }			t_pipex;
 
-void		ft_errorcmd(char *av);
+void		ft_errorcmd(t_pipex *pipex);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putchar_fd(char c, int fd);
 size_t		ft_strlen(const char *s);

@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:06 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/20 21:57:37 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:17:54 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	ft_cmddone(t_pipex *pipex, int x)
 		pipex->j++;
 	}
 	if (x == 2 && !pipex->cmd1)
-		ft_errorcmd(pipex->avs[x]);
+		ft_errorcmd(pipex);
 	if (x == 3 && !pipex->cmd2)
-		ft_errorcmd(pipex->avs[x]);
+		ft_errorcmd(pipex);
 }
 
 void	ft_checkcmd(t_pipex *pipex, int x)
@@ -58,22 +58,34 @@ void	ft_checkcmd(t_pipex *pipex, int x)
 	free_all(pipex->path);
 }
 
+void	checkallcmd(t_pipex *pipex)
+{
+	ft_checkcmd(pipex, 2);
+	ft_checkcmd(pipex, 3);
+}
+
+void	pipexinit(int ac, char **av, char **env, t_pipex *pipex)
+{
+	pipex->acs = ac;
+	pipex->avs = av;
+	pipex->envs = env;
+	pipex->cmd1 = NULL;
+	pipex->cmd2 = NULL;
+}
+
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	*pipex;
 
 	pipex = malloc(sizeof(t_pipex));
-	pipex->avs = av;
-	pipex->acs = ac;
-	pipex->envs = env;
+	pipexinit(ac, av, env, pipex);
 	if (ac == 5)
 	{
-		ft_checkcmd(pipex, 2);
-		ft_checkcmd(pipex, 3);
-		printf("cmd: %s\n", pipex->cmd1);
-		printf("cmd: %s\n", pipex->cmd2);
+		checkallcmd(pipex);
 		system("leaks  pipex");
 	}
 	else
 		errorarg();
+	system("leaks pipex");
+	return (0);
 }
