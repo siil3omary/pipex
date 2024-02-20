@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:06 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/20 22:17:54 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/20 23:42:14 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,26 @@
 
 void	ft_cmddone(t_pipex *pipex, int x)
 {
+	char	**tmp;
+
 	pipex->j = 0;
 	while (pipex->pathcmd[pipex->j])
 	{
-		if (access(pipex->pathcmd[pipex->j], X_OK) == 0 && x == 2)
+		tmp = ft_split(pipex->pathcmd[pipex->j], ' ');
+		if (access(tmp[0], X_OK) == 0 && x == 2)
 		{
 			pipex->cmd1 = ft_strdup(pipex->pathcmd[pipex->j]);
+			free_all(tmp);
 			break ;
 		}
-		if (access(pipex->pathcmd[pipex->j], X_OK) == 0 && x == 3)
+		if (access(tmp[0], X_OK) == 0 && x == 3)
 		{
 			pipex->cmd2 = ft_strdup(pipex->pathcmd[pipex->j]);
+			free_all(tmp);
 			break ;
 		}
 		pipex->j++;
+		free_all(tmp);
 	}
 	if (x == 2 && !pipex->cmd1)
 		ft_errorcmd(pipex);
@@ -42,7 +48,11 @@ void	ft_checkcmd(t_pipex *pipex, int x)
 			ft_strlen(pipex->envs[pipex->i])) && pipex->envs[pipex->i])
 		pipex->i++;
 	pipex->path = ft_split(pipex->envs[pipex->i], '=');
+	if (!pipex->path)
+		return ;
 	pipex->pathcmd = ft_split(pipex->path[1], ':');
+	if (!pipex->pathcmd)
+		return ;
 	pipex->j = 0;
 	while (pipex->pathcmd[pipex->j])
 	{
@@ -58,7 +68,7 @@ void	ft_checkcmd(t_pipex *pipex, int x)
 	free_all(pipex->path);
 }
 
-void	checkallcmd(t_pipex *pipex)
+void	checkall(t_pipex *pipex)
 {
 	ft_checkcmd(pipex, 2);
 	ft_checkcmd(pipex, 3);
@@ -78,11 +88,12 @@ int	main(int ac, char **av, char **env)
 	t_pipex	*pipex;
 
 	pipex = malloc(sizeof(t_pipex));
+	if (!pipex)
+		return (0);
 	pipexinit(ac, av, env, pipex);
 	if (ac == 5)
 	{
-		checkallcmd(pipex);
-		system("leaks  pipex");
+		checkall(pipex);
 	}
 	else
 		errorarg();
