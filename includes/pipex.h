@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:57 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/20 18:14:41 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/20 21:26:01 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <unistd.h>
 typedef struct s_pipex
 {
+	int		i;
+	int		j;
 	pid_t	pid1;
 	pid_t	pid2;
 	int		infileFd;
@@ -27,14 +29,16 @@ typedef struct s_pipex
 	char	**envs;
 	char	**path;
 	char	**pathCmd;
-    char **avs;
-    int acs;
-    char *tmp;
-    char * tmp2;
-    char *cmd;
+	char	**avs;
+	int		acs;
+	char	*tmp;
+	char	*tmp2;
+	char	*cmd1;
+	char	*cmd2;
 
 }			t_pipex;
-
+void		errorCmd(char *av);
+void		*free_all(char **sp);
 size_t		ft_strlen(const char *s);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putchar_fd(char c, int fd);
