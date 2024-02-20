@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:57 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/20 17:59:35 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:14:41 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_pipex
 	char	**envs;
 	char	**path;
 	char	**pathCmd;
+    char **avs;
+    int acs;
     char *tmp;
     char * tmp2;
     char *cmd;
