@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:57 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/20 21:26:01 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/20 21:58:39 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@
 # include <stdlib.h>
 # include <strings.h>
 # include <unistd.h>
+
 typedef struct s_pipex
 {
 	int		i;
 	int		j;
 	pid_t	pid1;
 	pid_t	pid2;
-	int		infileFd;
-	int		outfileFd;
+	int		infile_fd;
+	int		outfile_fd;
 	char	**envs;
 	char	**path;
-	char	**pathCmd;
+	char	**pathcmd;
 	char	**avs;
 	int		acs;
 	char	*tmp;
@@ -37,12 +38,13 @@ typedef struct s_pipex
 	char	*cmd2;
 
 }			t_pipex;
-void		errorCmd(char *av);
-void		*free_all(char **sp);
-size_t		ft_strlen(const char *s);
+
+void		ft_errorcmd(char *av);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putchar_fd(char c, int fd);
+size_t		ft_strlen(const char *s);
 size_t		ft_strlcpy(char *dest, const char *src, size_t size);
+void		*free_all(char **sp);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strdup(const char *s);
 char		*ft_strnstr(const char *big, const char *little, size_t len);
