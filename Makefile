@@ -22,7 +22,7 @@ SRCS := srcs/ft_putstr_fd.c \
         srcs/ft_strdup.c \
         srcs/ft_strnstr.c \
         srcs/ft_split.c \
-        pipex.c \
+        srcs/pipex.c \
 
 OBJS := $(SRCS:.c=.o)
 

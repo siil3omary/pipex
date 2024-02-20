@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:57 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/18 21:47:04 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:47:25 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_pipex
 	pid_t	pid2;
 	int		infileFd;
 	int		outfileFd;
+	char	**envs;
 	char	**path;
 	char	**pathCmd;
 
@@ -37,4 +38,5 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strdup(const char *s);
 char		*ft_strnstr(const char *big, const char *little, size_t len);
 char		**ft_split(char const *s, char c);
+void		errorarg(void);
 #endif
