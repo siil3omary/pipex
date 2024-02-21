@@ -1,15 +1,10 @@
-# | | ___ \ \ | |
-# | | ) | | |\/ | _ | | / _
-# ___ __| __/ | | | | ( | < __/
-# _| _____| _| _| \__,_|_|\_\ \___|
-# by jcluzet
 ################################################################################
 # CONFIG #
 ################################################################################
 
 NAME :=     pipex
 CC :=   cc
-FLAGS := -Wall -Wextra -Werror -g # Add debugging flags here
+FLAGS := -Wall -Wextra -Werror 
 ################################################################################
 # PROGRAM'S SRCS #
 ################################################################################
@@ -61,7 +56,7 @@ fclean: clean
 
 re: fclean all
 
-debug:  FLAGS := -Wall -Wextra -Werror -g3 --fsanitize=address -fsanitize=undefined
+debug:  FLAGS := -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=undefined
 debug:  fclean all
 
 .PHONY: all clean fclean re debug
