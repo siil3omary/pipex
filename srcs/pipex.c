@@ -6,12 +6,24 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:06 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/20 23:42:14 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/21 12:55:43 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
+void ft_checkfile(t_pipex *pipex){
+    pipex->infile_fd = open(pipex->avs[1] , O_RDONLY);
+    if (pipex->infile_fd == -1)
+        ft_errorfile(pipex);
+    pipex->outfile_fd = open(pipex->avs[4], O_CREAT, S_IRWXU );
+    if (pipex->outfile_fd == -1)
+    {
+                ft_errorfile(pipex);
+    }
+    
+    
+}
 void	ft_cmddone(t_pipex *pipex, int x)
 {
 	char	**tmp;
@@ -70,6 +82,7 @@ void	ft_checkcmd(t_pipex *pipex, int x)
 
 void	checkall(t_pipex *pipex)
 {
+    ft_checkfile(pipex);
 	ft_checkcmd(pipex, 2);
 	ft_checkcmd(pipex, 3);
 }
@@ -94,6 +107,7 @@ int	main(int ac, char **av, char **env)
 	if (ac == 5)
 	{
 		checkall(pipex);
+        
 	}
 	else
 		errorarg();

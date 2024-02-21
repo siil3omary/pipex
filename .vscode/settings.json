@@ -55,15 +55,15 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
-"C_Cpp_Runner.msvcSecureNoWarnings": false,
-"files.associations": {
+  "C_Cpp_Runner.msvcSecureNoWarnings": false,
+  "files.associations": {
     "pipex.h": "c"
-},
-"makefile.launchConfigurations": [
+  },
+  "makefile.launchConfigurations": [
     {
-        "cwd": "/Users/aelomari/Desktop/pipex",
-        "binaryPath": "/Users/aelomari/Desktop/pipex/pipex",
-        "binaryArgs": []
+      "cwd": "/Users/aelomari/Desktop/pipex",
+      "binaryPath": "/Users/aelomari/Desktop/pipex/pipex",
+      "binaryArgs": []
     }
-]
+  ]
 }
