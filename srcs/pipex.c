@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:06 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/21 19:33:07 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:57:26 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,9 @@ int	main(int ac, char **av, char **env)
 	if (ac == 5)
 	{
 		checkall(pipex);
-        printf("cmd1: %s\n", pipex->cmd1);
-        printf("cmd1args: %s\t %s \t %s", pipex->cmd1args[0] , pipex->cmd1args[1], pipex->cmd1args[2]);
+        // printf("cmd1: %s\n", pipex->cmd1);
+        // printf("cmd1args: %s\t %s \t %s", pipex->cmd1args[0] , pipex->cmd1args[1], pipex->cmd1args[2]);
+        system("leaks pipex");
         execve(pipex->cmd1args[0], pipex->cmd1args, env);
 	}
 	else
