@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:06 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/21 20:01:43 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:53:24 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,46 +22,55 @@ void	ft_checkfile(t_pipex *pipex)
 	if (pipex->outfile_fd == -1)
 		ft_errorfile(pipex);
 }
+int	set1(t_pipex *pipex)
+{
+	pipex->cmd1args = ft_split(pipex->pathcmd[pipex->j], ' ');
+	if (access(pipex->cmd1args[0], X_OK) == 0){
+		pipex->cmd1 = ft_strdup(pipex->cmd1args[0]);
+        return 1;
+    }
+	free_all(pipex->cmd1args);
+    return 0;
+}
+int 	set2(t_pipex *pipex)
+{
+	pipex->cmd2args = ft_split(pipex->pathcmd[pipex->j], ' ');
+	if (access(pipex->cmd2args[0], X_OK) == 0){
+		pipex->cmd2 = ft_strdup(pipex->cmd2args[0]);
+        return 1; ;
+    }
+	free_all(pipex->cmd2args);
+    return 0;
+}
 void	ft_cmddone(t_pipex *pipex, int x)
 {
 	pipex->j = 0;
 	while (pipex->pathcmd[pipex->j])
 	{
-		if (x == 2)
-		{
-			pipex->cmd1args = ft_split(pipex->pathcmd[pipex->j], ' ');
-			if (access(pipex->cmd1args[0], X_OK) == 0 && x == 2)
-			{
-				pipex->cmd1 = ft_strdup(pipex->pathcmd[pipex->j]);
-				// free_all(pipex->cmd1args);
-				break ;
-			}
-        free_all(pipex->cmd1args);
-		}
-		if (x == 3)
-		{
-			pipex->cmd2args = ft_split(pipex->pathcmd[pipex->j], ' ');
-			if (access(pipex->cmd2args[0], X_OK) == 0 && x == 3)
-			{
-				pipex->cmd2 = ft_strdup(pipex->pathcmd[pipex->j]);
-				free_all(pipex->cmd2args);
-				break ;
-			}
-            printf("cmd2args: %s\t %s \n", pipex->cmd2args[0] , pipex->cmd2args[1]);
-        free_all(pipex->cmd2args);
-		}
+		if (x == 2 && set1(pipex))
+			break;
+		if (x == 3 && set2(pipex))
+			break;
 		pipex->j++;
 	}
-            printf("cmd1args: %s\t %s \n", pipex->cmd1args[0] , pipex->cmd1args[1]);
+    free_all(pipex->pathcmd);
+	// printf("cmd2args: %s\t %s \n", pipex->cmd2args[0] , pipex->cmd2args[1]);
 	if (x == 2 && !pipex->cmd1)
 		ft_errorcmd(pipex, 2);
 	if (x == 3 && !pipex->cmd2)
 		ft_errorcmd(pipex, 3);
-
 }
 
 void	ft_checkcmd(t_pipex *pipex, int x)
 {
+    // if(access(pipex->avs[x], X_OK) == 0){
+    //     if(x == 2)
+    //     pipex->cmd1 = ft_strdup(pipex->avs[x]);
+    //     else
+    //     pipex->cmd2 = ft_strdup(pipex->avs[x]);
+    //     return ;
+    // }
+    
 	pipex->i = 0;
 	while (!ft_strnstr(pipex->envs[pipex->i], "PATH=",
 			ft_strlen(pipex->envs[pipex->i])) && pipex->envs[pipex->i])
@@ -70,8 +79,7 @@ void	ft_checkcmd(t_pipex *pipex, int x)
 	if (!pipex->path)
 		return ;
 	pipex->pathcmd = ft_split(pipex->path[1], ':');
-	if (!pipex->pathcmd)
-		return ;
+        free_all(pipex->path);
 	pipex->j = 0;
 	while (pipex->pathcmd[pipex->j])
 	{
@@ -80,11 +88,11 @@ void	ft_checkcmd(t_pipex *pipex, int x)
 		free(pipex->pathcmd[pipex->j]);
 		free(pipex->tmp);
 		pipex->pathcmd[pipex->j] = pipex->tmp2;
+
 		pipex->j++;
 	}
+    
 	ft_cmddone(pipex, x);
-	free_all(pipex->pathcmd);
-	free_all(pipex->path);
 }
 
 void	checkall(t_pipex *pipex)
@@ -114,10 +122,9 @@ int	main(int ac, char **av, char **env)
 	if (ac == 5)
 	{
 		checkall(pipex);
-        // printf("cmd1: %s\n", pipex->cmd1);
-        // printf("cmd1args: %s\t %s \t %s", pipex->cmd1args[0] , pipex->cmd1args[1], pipex->cmd1args[2]);
-        system("leaks pipex");
-        execve(pipex->cmd1args[0], pipex->cmd1args, env);
+        // printf("%s", pipex->cmd2args[0]);
+		system("leaks pipex");
+        execve(pipex->cmd2 , pipex->cmd2args, env);
 	}
 	else
 		errorarg();

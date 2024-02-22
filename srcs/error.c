@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:46:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/21 18:35:39 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/22 00:08:17 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	ft_errorcmd(t_pipex *pipex, int x)
 		ft_putstr_fd(pipex->avs[3], 2);
 		ft_putchar_fd('\n', 2);
 	}
+    // 	free_all(pipex->pathcmd);
+	// free_all(pipex->path);
     system("leaks  pipex");
 	exit(127);
 }
@@ -43,6 +45,7 @@ void	ft_errorfile(t_pipex *pipex)
 		ft_putstr_fd(pipex->avs[1], 2);
 		ft_putchar_fd('\n', 2);
 		ft_checkcmd(pipex, 3);
+        free(pipex->cmd2);
 		ft_checkcmd(pipex, 2);
 	}
 	system("leaks  pipex");
