@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:46:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/22 00:08:17 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:05:10 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	ft_errorfile(t_pipex *pipex)
         free(pipex->cmd2);
 		ft_checkcmd(pipex, 2);
 	}
+    
 	system("leaks  pipex");
 	exit(127);
 }
