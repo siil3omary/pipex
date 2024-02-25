@@ -4,24 +4,24 @@
 
 int main()
 {
-    int status;
-    pid_t pid;
+    char *s[] = {"/bin/ls", NULL};
+    char *s1[] = {"/bin/ls", NULL};
+    pid_t pid = fork();
+    if(pid < 0){
+        printf("fork error");
 
-    pid = fork();
-    if(pid < 0)
-    {
-        printf("error fork");
-        exit(1);
     }
-    waitpid(pid, &status, 0);
+    waitpid(0 , NULL, 0 );
     if(pid == 0)
     {
-        printf("hello from %d", getpid());
-        close(1);
-    }else{
-        printf("hello from %d", getpid());
-
-
+        printf("Hello from child%d\n  " , getpid());
+        execve("/bin/ls" , s, NULL);
+        exit(1);
+        
+    }else
+    {
+        printf("\nhello from parent %d" , getpid());
+        execve("/bin/cat" , s1, NULL);
     }
     system("leaks a.out");
-}
+}   
