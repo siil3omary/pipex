@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:41:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/25 23:08:03 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/25 23:32:19 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,11 @@ void	ft_cmddone(t_pipex *pipex, int x)
 void	ft_checkcmd(t_pipex *pipex, int x)
 {
 	pipex->i = 0;
-	while (!ft_strnstr(pipex->envs[pipex->i], "PATH=",
-			6) && pipex->envs[pipex->i])
+	while (!ft_strnstr(pipex->envs[pipex->i], "PATH=", 6)
+		&& pipex->envs[pipex->i])
 		pipex->i++;
-                if (!pipex->envs[pipex->i])
-                ft_errorcmd(pipex, x);
-
-        
+	if (!pipex->envs[pipex->i])
+		ft_errorcmd(pipex, x);
 	pipex->path = ft_split(pipex->envs[pipex->i], '=');
 	if (!pipex->path)
 		return ;
@@ -91,5 +89,3 @@ void	ft_checkcmd(t_pipex *pipex, int x)
 	}
 	ft_cmddone(pipex, x);
 }
-
-
