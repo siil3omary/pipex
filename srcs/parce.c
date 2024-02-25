@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:41:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/25 14:51:49 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/25 23:08:03 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_checkfile(t_pipex *pipex)
 {
 	pipex->infile_fd = open(pipex->avs[1], O_RDONLY);
-	pipex->outfile_fd = open(pipex->avs[4], O_CREAT | O_RDWR, 0644);
+	pipex->outfile_fd = open(pipex->avs[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (pipex->infile_fd == -1)
 		ft_errorfile(pipex);
 	if (pipex->outfile_fd == -1)
@@ -68,8 +68,12 @@ void	ft_checkcmd(t_pipex *pipex, int x)
 {
 	pipex->i = 0;
 	while (!ft_strnstr(pipex->envs[pipex->i], "PATH=",
-			ft_strlen(pipex->envs[pipex->i])) && pipex->envs[pipex->i])
+			6) && pipex->envs[pipex->i])
 		pipex->i++;
+                if (!pipex->envs[pipex->i])
+                ft_errorcmd(pipex, x);
+
+        
 	pipex->path = ft_split(pipex->envs[pipex->i], '=');
 	if (!pipex->path)
 		return ;

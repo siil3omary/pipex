@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:06 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/25 22:25:35 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/25 22:38:49 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	pipexinit(int ac, char **av, char **env, t_pipex *pipex)
 
 int	main(int ac, char **av, char **env)
 {
+	t_pipex	*pipex;
 
 	if (ac == 5)
 	{
-		t_pipex *pipex;
 		pipex = malloc(sizeof(t_pipex));
 		if (!pipex)
 			return (0);
@@ -48,24 +48,22 @@ int	main(int ac, char **av, char **env)
 		pipex->pid = fork();
 		if (!pipex->pid)
 		{
-            close(pipex->pip[0]);
-            dup2(pipex->infile_fd, STDIN_FILENO);
-            dup2(pipex->pip[1], STDOUT_FILENO);
-
-            
-            close(pipex->infile_fd); 
-            close(pipex->pip[0]); 
-            execve(pipex->cmd1, pipex->cmd1args, env);
-            exit(1);
+			close(pipex->pip[0]);
+			dup2(pipex->infile_fd, STDIN_FILENO);
+			dup2(pipex->pip[1], STDOUT_FILENO);
+			close(pipex->infile_fd);
+			close(pipex->pip[0]);
+			execve(pipex->cmd1, pipex->cmd1args, env);
+			exit(1);
 		}
 		else
 		{
 			dup2(pipex->outfile_fd, STDOUT_FILENO);
-			dup2(pipex->pip[0] , STDIN_FILENO);
-            close(pipex->outfile_fd);
-            close(pipex->pip[1]);
+			dup2(pipex->pip[0], STDIN_FILENO);
+			close(pipex->outfile_fd);
+			close(pipex->pip[1]);
 			execve(pipex->cmd2, pipex->cmd2args, env);
-			// waitpid(pipex->pid , NULL, 0);
+			waitpid(pipex->pid, NULL, 0);
 		}
 		system("leaks pipex");
 	}
