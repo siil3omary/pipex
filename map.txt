@@ -12,8 +12,15 @@ pipe()
         |     |--dup2()
         |     |--close end[0]
         |     |--execve (cmd1)
+        |
         |-- parent() // run cmd2 
         |     |
+        |     |--close end[1]
         |     |--dup2()
         |     |--close end[1]
         |     |--execve (cmd2)
+
+
++----------+       +----------+       +----------+
+|  Process | ----> |   Pipe   | ----> |  Process |
++----------+       +----------+       +----------+

@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:57 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/25 20:16:55 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:26:24 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 
 typedef struct s_pipex
 {
-    int pip[2];
+	int		pip[2];
+	int		status;
 	pid_t	pid;
 	int		i;
 	int		j;
@@ -36,19 +37,21 @@ typedef struct s_pipex
 	char	**envs;
 	char	**path;
 	char	**pathcmd;
-    char **cmd1args;
-    char **cmd2args;
+	char	**cmd1args;
+	char	**cmd2args;
 
 }			t_pipex;
 
-void	ft_checkfile(t_pipex *pipex);
-void	ft_cmddone(t_pipex *pipex, int x);
-void	ft_checkcmd(t_pipex *pipex, int x);
-void	checkall(t_pipex *pipex);
-void	pipexinit(int ac, char **av, char **env, t_pipex *pipex);
-void	ft_errorfile(t_pipex *pipex);
+void		ft_checkfile(t_pipex *pipex);
+void		child_process(t_pipex *pipex);
+void		parent_process(t_pipex *pipex);
+void		ft_cmddone(t_pipex *pipex, int x);
+void		ft_checkcmd(t_pipex *pipex, int x);
+void		checkall(t_pipex *pipex);
+void		pipexinit(int ac, char **av, char **env, t_pipex *pipex);
+void		ft_errorfile(t_pipex *pipex);
 void		errorarg(void);
-void	ft_errorcmd(t_pipex *pipex , int x);
+void		ft_errorcmd(t_pipex *pipex, int x);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putchar_fd(char c, int fd);
 size_t		ft_strlen(const char *s);

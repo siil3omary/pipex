@@ -19,6 +19,7 @@ SRCS := srcs/ft_putstr_fd.c \
         srcs/ft_split.c \
         srcs/error.c \
         srcs/parce.c \
+        srcs/excute.c \
         srcs/pipex.c \
 
 OBJS := $(SRCS:.c=.o)

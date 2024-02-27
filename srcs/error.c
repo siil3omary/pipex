@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:46:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/25 23:35:18 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:43:56 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_errorcmd(t_pipex *pipex, int x)
 		ft_putstr_fd(pipex->avs[2], 2);
 		ft_putchar_fd('\n', 2);
 		ft_checkcmd(pipex, 3);
+	    exit(0);
         
 	}
 	else
@@ -30,9 +31,7 @@ void	ft_errorcmd(t_pipex *pipex, int x)
 		ft_putstr_fd(pipex->avs[3], 2);
 		ft_putchar_fd('\n', 2);
 	}
-    // 	free_all(pipex->pathcmd);
-	// free_all(pipex->path);
-	exit(0);
+	exit(127);
 }
 
 void	ft_errorfile(t_pipex *pipex)
@@ -47,7 +46,7 @@ void	ft_errorfile(t_pipex *pipex)
         free(pipex->cmd2);
 		ft_checkcmd(pipex, 2);
 	}
-	exit(127);
+	exit(0);
 }
 
 void	errorarg(void)
