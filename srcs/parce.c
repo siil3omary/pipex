@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 14:41:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/25 23:32:19 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:59:14 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_checkfile(t_pipex *pipex)
 {
-	pipex->infile_fd = open(pipex->avs[1], O_RDONLY);
+	pipex->infile_fd = open(pipex->avs[1], O_RDONLY  );
 	pipex->outfile_fd = open(pipex->avs[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (pipex->infile_fd == -1)
 		ft_errorfile(pipex);
