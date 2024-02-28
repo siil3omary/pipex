@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:06:27 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/27 18:36:58 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:48:04 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	child_process(t_pipex *pipex)
 	execve(pipex->cmd1, pipex->cmd1args, pipex->envs);
 	exit(EXIT_FAILURE);
 }
-void	parent_process(t_pipex *pipex)
+void	child1_process(t_pipex *pipex)
 {
 	waitpid(pipex->pid, &pipex->status, 0);
 	close(pipex->pip[1]);

@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:06 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/27 16:06:01 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:48:13 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,29 @@ int	main(int ac, char **av, char **env)
 			return (0);
 		pipexinit(ac, av, env, pipex);
 		checkall(pipex);
-		pipe(pipex->pip);
-		pipex->pid = fork();
-		if (!pipex->pid)
-			child_process(pipex);
-		else
-			parent_process(pipex);
+		// pipe(pipex->pip);
+		// pipex->pid = fork();
+		// if (!pipex->pid)
+		// 	child_process(pipex);
+		// else
+		// 	parent_process(pipex);
+		int i = 0;
+		while(i < 2)
+		{
+			pipe(pipex->pip);
+			pipex->pid =  fork();
+			if(pipex->pid == 0)
+			{
+				if(i == 0)
+				child_process(pipex);
+				else
+				child1_process(pipex);
+			}else{
+				waitpid(pipex->pid, &pipex->status, 0);
+			}
+		i++;
+		}
+		
 	}
 	else
 		errorarg();

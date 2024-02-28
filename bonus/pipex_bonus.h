@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:57 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/28 13:48:25 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:42:31 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <fcntl.h>
 # include <stdio.h>
@@ -22,25 +22,16 @@
 
 typedef struct s_pipex
 {
-	int		pip[2];
-	int		status;
-	pid_t	pid;
-	int		i;
-	int		j;
-	int		acs;
-	int		infile_fd;
-	int		outfile_fd;
-	char	*tmp;
-	char	*tmp2;
-	char	*cmd1;
-	char	*cmd2;
-	char	**avs;
-	char	**envs;
-	char	**path;
-	char	**pathcmd;
-	char	**cmd1args;
-	char	**cmd2args;
+    int infile_fd;
+    int outfile_fd;
+    int acs;
+    char **avs;
+    char **envs;
 
+    int status; 
+    pid_t   pid;
+    int pipe_fd[2];
+    int i;
 }			t_pipex;
 
 void		ft_checkfile(t_pipex *pipex);
