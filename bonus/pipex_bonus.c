@@ -28,9 +28,9 @@ void child_process2(t_pipex *pipex)
  }
  void initcmds(t_pipex *pipex)
  {
-    
+
  }
-int main(int ac, char **av  , char **env)
+int main(int ac, char **av  , char  **env)
 {
     if(ac >= 5){
     t_pipex *pipex;
