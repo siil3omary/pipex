@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:57 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/28 15:42:31 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:35:17 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ typedef struct s_pipex
     int acs;
     char **avs;
     char **envs;
-
-    int status; 
-    pid_t   pid;
+    int prev_fd;
+    int next_fd;
+    int status;  
+    pid_t   pid[32768];
     int pipe_fd[2];
     int i;
 }			t_pipex;
