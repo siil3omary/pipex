@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/aelomari/Documents/pipex",
-      "program": "/Users/aelomari/Documents/pipex/build/Debug/outDebug"
+      "cwd": "/Users/aelomari/Documents/pipex/bonus",
+      "program": "/Users/aelomari/Documents/pipex/bonus/build/Debug/outDebug"
     }
   ]
 }

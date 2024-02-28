@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:55:57 by aelomari          #+#    #+#             */
-/*   Updated: 2024/02/28 13:48:25 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:16:33 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_pipex
 
 }			t_pipex;
 
-void		ft_checkfile(t_pipex *pipex);
+    void		ft_checkfile(t_pipex *pipex);
 void		child_process(t_pipex *pipex);
 void		child1_process(t_pipex *pipex);
 void		ft_cmddone(t_pipex *pipex, int x);
