@@ -156,7 +156,7 @@ int main(int ac, char **av, char **env) {
         
         while (pipex->i < ac - 3) {
             if (pipe(pipex->pipe_fd) == -1) {
-                perror("pipe failed");
+	                perror("pipe failed");
                 exit(EXIT_FAILURE);
             }
             
