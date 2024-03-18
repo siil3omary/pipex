@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/18 02:16:20 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/18 02:19:16 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ int	main(int ac, char **av, char **env)
 			{
 				pipex->cmd = check_cmd(pipex->avs[pipex->index + 2], pipex);
 
-				// printf("cmd: %s\n", pipex->cmd[0]);
+				printf("cmd: %s\n", pipex->cmd[0]);
 				free_all(pipex->cmd);
 				free(pipex);
 				// system("leaks a.out");
