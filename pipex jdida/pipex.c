@@ -6,63 +6,60 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/17 19:27:25 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/18 02:16:20 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	free_path(t_pipex *pipex)
-{
-	int	i;
 
-	i = 0;
-	while (pipex->path[i])
-	{
-		free(pipex->path[i]);
-		i++;
-	}
-	free(pipex->path);
-}
 
-void	get_path(t_pipex *pipex)
+char   	**get_path(t_pipex *pipex)
 {
 	int		i;
 	char	*tmp;
+    char    **path;
 
 	i = 0;
 	while (pipex->envs[i])
 	{
 		if (ft_strnstr(pipex->envs[i], "PATH=", 5))
 		{
-			tmp = ft_strdup(pipex->envs[i] + 5);
-			pipex->path = ft_split(tmp, ':');
-			free(tmp);
-			break ;
+	
+			path = ft_split(pipex->envs[i] + 5, ':');
+			return path;
 		}
 		i++;
 	}
+		
+
+    return (free_all(path), free(pipex),NULL);
 }
 char	**check_cmd(char *cmd, t_pipex *pipex)
 {
 	int		i;
 	char	*tmp;
 	char	*tmp2;
+    char    **path;
 	char	**result;
 
 	i = 0;
-	get_path(pipex);
-	while (pipex->path[i])
+	path = get_path(pipex);
+    if(!path)
+    return NULL;
+	while (path[i])
 	{
-		tmp = ft_strjoin(pipex->path[i], "/");
+		tmp = ft_strjoin(path[i], "/");
 		tmp2 = ft_strjoin(tmp, cmd);
-		free(tmp);
 		if (access(tmp2, X_OK) == 0)
 		{
 			result = ft_split(tmp2, ' ');
+            free(tmp);
 			free(tmp2);
+            free_all(path);
 			return (result);
 		}
+		free(tmp);
 		free(tmp2);
 		i++;
 	}
@@ -70,7 +67,7 @@ char	**check_cmd(char *cmd, t_pipex *pipex)
 	ft_putstr_fd(cmd, 2);
 	ft_putstr_fd(":  ", 2);
 	ft_putstr_fd("command not found\n", 2);
-	return (NULL);
+	return (free_all(path),NULL);
 }
 
 void	openfiles(t_pipex *pipex)
@@ -146,6 +143,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	return (NULL);
 }
 
+
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	*pipex;
@@ -163,8 +161,9 @@ int	main(int ac, char **av, char **env)
 		ft_putstr_fd("\n\t --help for help\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	pipex = (t_pipex *)malloc(sizeof(t_pipex));
+	 pipex = (t_pipex *)malloc(sizeof(t_pipex));
 	//  init args
+    
 	pipex->acs = ac;
 	pipex->avs = av;
 	pipex->envs = env;
@@ -172,6 +171,8 @@ int	main(int ac, char **av, char **env)
 	pipex->infile_fd = 0;
 	// pipex excute
 	pipe(pipex->pipe_fd);
+				openfiles(pipex);
+                
 	while (pipex->index < ac - 3)
 	{
 		pipex->pid = fork();
@@ -185,27 +186,35 @@ int	main(int ac, char **av, char **env)
 		{
 			if (pipex->index == 0)
 			{
-				openfiles(pipex);
+
 				pipex->cmd = check_cmd(pipex->avs[pipex->index + 2], pipex);
+
 				printf("cmd: %s\n", pipex->cmd[0]);
-				free_path(pipex);
-				free(pipex->cmd);
+				free_all(pipex->cmd);
+				free(pipex);
 				// system("leaks a.out");
-				exit(0);
+			exit(1);
 			}
 			else
 			{
 				pipex->cmd = check_cmd(pipex->avs[pipex->index + 2], pipex);
-				printf("cmd: %s\n", pipex->cmd[0]);
-				free_path(pipex);
-				free(pipex->cmd);
+
+				// printf("cmd: %s\n", pipex->cmd[0]);
+				free_all(pipex->cmd);
+				free(pipex);
 				// system("leaks a.out");
-				exit(0);
+			exit(1);
 			}
 		}
-		else
-			waitpid(pipex->pid, pipex->status, 0);
+		// else
+		// 	waitpid(pipex->pid, pipex->status, 0);
 		pipex->index++;
 	}
+    int st;
+    while (wait(&st) != -1)
+        pipex->status = WEXITSTATUS(st);
+// free(pipex->path);
+// free_all(pipex->cmd);
+free(pipex);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:51:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/16 08:56:28 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/18 01:48:14 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	*free_all(char **sp)
 	size_t	j;
 
 	j = 0;
+	if(!sp || !sp[j])
+	{
+		return NULL;
+	}
 	while (sp[j])
 	{
 		free(sp[j]);
