@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/19 22:41:57 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:01:19 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int ac, char **av, char **env)
 				printf("cmd: %s\n", pipex->cmd[0]);
 				free_all(pipex->cmd);
 				free(pipex);
-				system("leaks a.out");
+
 				exit(1);
 			}
 			else
@@ -67,10 +67,10 @@ int	main(int ac, char **av, char **env)
 				pipex->cmd = check_cmd(pipex->avs[pipex->index + 2], pipex);
 				ft_putstr_fd("=========================================\n", 1);
 				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
+				free(pipex);
 				printf("cmd: %s %s\n", pipex->cmd[0], pipex->cmd[1]);
 				free_all(pipex->cmd);
-				free(pipex);
-				system("leaks a.out");
+
 								exit(1);
 			}
 			// 	}else{
@@ -80,8 +80,8 @@ int	main(int ac, char **av, char **env)
 	}
 	while (wait(&st) != -1)
 		pipex->status = WEXITSTATUS(st);
-	free(pipex);
 
 	
+	free(pipex);
 	return (0);
 }
