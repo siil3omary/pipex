@@ -6,7 +6,11 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/03/19 21:00:50 by aelomari         ###   ########.fr       */
+=======
+/*   Updated: 2024/03/19 00:45:24 by aelomari         ###   ########.fr       */
+>>>>>>> 8f696a1a5d2ee8c03c8c69bac95cca889daedae3
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +59,46 @@ int	main(int ac, char **av, char **env)
 
 				pipex->cmd = check_cmd(pipex->avs[pipex->index + 2], pipex);
 				ft_putstr_fd("=========================================\n", 1);
+<<<<<<< HEAD
 					while (1)
 	{
 		/* code */
 	}
+=======
+				system("leaks a.out");
+>>>>>>> 8f696a1a5d2ee8c03c8c69bac95cca889daedae3
 				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 				printf("cmd: %s\n", pipex->cmd[0]);
 				free_all(pipex->cmd);
 				free(pipex);
+<<<<<<< HEAD
 				system("leaks a.out");
+=======
+>>>>>>> 8f696a1a5d2ee8c03c8c69bac95cca889daedae3
 				exit(1);
 			}
 			else
 			{
 				pipex->cmd = check_cmd(pipex->avs[pipex->index + 2], pipex);
 				ft_putstr_fd("=========================================\n", 1);
+<<<<<<< HEAD
 					while (1)
 	{
 		/* code */
 	}
+=======
+				system("leaks a.out");
+>>>>>>> 8f696a1a5d2ee8c03c8c69bac95cca889daedae3
 				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 				printf("cmd: %s %s\n", pipex->cmd[0], pipex->cmd[1]);
 				free_all(pipex->cmd);
 				free(pipex);
+<<<<<<< HEAD
 				system("leaks a.out");
 								exit(1);
+=======
+				exit(1);
+>>>>>>> 8f696a1a5d2ee8c03c8c69bac95cca889daedae3
 			}
 			// 	}else{
 			// waitpid(pipex->pid, &st, 0);
@@ -96,3 +115,6 @@ int	main(int ac, char **av, char **env)
 	
 	return (0);
 }
+
+
+
