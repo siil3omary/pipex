@@ -6,11 +6,11 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:51:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/18 01:48:14 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/19 20:39:50 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 size_t	word_count(const char *str, char c)
 {
@@ -33,9 +33,9 @@ void	*free_all(char **sp)
 	size_t	j;
 
 	j = 0;
-	if(!sp || !sp[j])
+	if (!sp || !sp[j])
 	{
-		return NULL;
+		return (NULL);
 	}
 	while (sp[j])
 	{
@@ -71,7 +71,6 @@ static void	fill_split(char **split, char *s, char c)
 			j++;
 		}
 	}
-
 	split[j] = NULL;
 }
 
@@ -85,6 +84,5 @@ char	**ft_split(char *s, char c)
 	if (split == NULL)
 		return (NULL);
 	fill_split(split, s, c);
-	
 	return (split);
 }

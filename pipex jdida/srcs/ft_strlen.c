@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 14:17:53 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/16 00:12:00 by aelomari         ###   ########.fr       */
+/*   Created: 2023/11/01 13:42:01 by aelomari          #+#    #+#             */
+/*   Updated: 2024/03/19 20:40:14 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+size_t	ft_strlen(const char *s)
 {
-	size_t	i;
+	size_t	len;
 
-	i = 0;
-	if (size > 0)
-	{
-		while (i < size - 1 && src[i])
-		{
-			dest[i] = src[i];
-			i++;
-		}
-		dest[i] = '\0';
-	}
-	while (src[i])
-	{
-		i++;
-	}
-	return (i);
+	if (s == NULL)
+		return (0);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
