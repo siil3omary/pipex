@@ -47,6 +47,8 @@ fclean:		clean
 
 re:			fclean all
 
+debug:
+			${CC} ${FLAGS}-fsanitize=address  -o ${NAME} ${OBJS} 
 push:
 			git add .
 			git commit -m "push"
