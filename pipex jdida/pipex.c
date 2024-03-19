@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/18 21:27:52 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/18 23:33:01 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,3 +211,6 @@ int	main(int ac, char **av, char **env)
 	free(pipex);
 	return (0);
 }
+
+
+
