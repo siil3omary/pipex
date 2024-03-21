@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/19 23:01:19 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/21 05:43:59 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	main(int ac, char **av, char **env)
 	//  init args
 	initstrct(pipex, ac, av, env);
 	// pipex excute
-	
-	
 	pipe(pipex->pipe_fd);
 	openfiles(pipex);
 	while (pipex->index < ac - 3)
@@ -51,37 +49,55 @@ int	main(int ac, char **av, char **env)
 		{
 			if (pipex->index == 0)
 			{
-				ft_putstr_fd("=========================================\n", 1);
-
+				close(0);
+				dup2(pipex->infile_fd, 0);
+				dup2(pipex->pipe_fd[1], 1);
+				close(pipex->pipe_fd[1]);
+				close(pipex->infile_fd);
 				pipex->cmd = check_cmd(pipex->avs[pipex->index + 2], pipex);
-				ft_putstr_fd("=========================================\n", 1);
+				printf("flag here");
 				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
-				printf("cmd: %s\n", pipex->cmd[0]);
 				free_all(pipex->cmd);
 				free(pipex);
-
 				exit(1);
 			}
 			else
 			{
-				pipex->cmd = check_cmd(pipex->avs[pipex->index + 2], pipex);
-				ft_putstr_fd("=========================================\n", 1);
-				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
-				free(pipex);
-				printf("cmd: %s %s\n", pipex->cmd[0], pipex->cmd[1]);
-				free_all(pipex->cmd);
+				if (pipex->index == pipex->acs - 4)
+				{
+				close(0);
+					close(pipex->pipe_fd[1]);
+					dup2(pipex->outfile_fd, 1);
+					dup2(pipex->pipe_fd[0], 0);
+					close(pipex->pipe_fd[0]);
+					close(pipex->outfile_fd);
+					pipex->cmd = check_cmd(pipex->avs[pipex->index + 2], pipex);
+					ft_putstr_fd(pipex->cmd[0], 2);
+					execve(pipex->cmd[0], pipex->cmd, pipex->envs);
+					free(pipex);
+					free_all(pipex->cmd);
+					exit(1);
+				}
+				else
+				{
+				close(0);
 
-								exit(1);
+					dup2(pipex->pipe_fd[0], 0);
+					dup2(pipex->pipe_fd[1], 1);
+					close(pipex->pipe_fd[0]);
+					close(pipex->pipe_fd[1]);
+					pipex->cmd = check_cmd(pipex->avs[pipex->index + 2], pipex);
+					execve(pipex->cmd[0], pipex->cmd, pipex->envs);
+					free(pipex);
+					free_all(pipex->cmd);
+					exit(1);
+				}
 			}
-			// 	}else{
-			// waitpid(pipex->pid, &st, 0);
 		}
 		pipex->index++;
 	}
 	while (wait(&st) != -1)
 		pipex->status = WEXITSTATUS(st);
-
-	
 	free(pipex);
 	return (0);
 }

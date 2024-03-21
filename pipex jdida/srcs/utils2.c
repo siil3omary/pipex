@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 19:38:41 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/19 20:53:13 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:55:18 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,11 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	return (NULL);
 }
 
-void	initstrct(t_pipex *pipex, int ac ,char **av,char **env)
+void	initstrct(t_pipex *pipex, int ac, char **av, char **env)
 {
 	pipex->acs = ac;
 	pipex->avs = av;
 	pipex->envs = env;
 	pipex->index = 0;
 	pipex->infile_fd = 0;
-
 }

@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:06:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/19 22:59:03 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:57:23 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 char	**get_path(t_pipex *pipex)
 {
 	int		i;
-	char	**path = NULL;
+	char	**path;
 
+	path = NULL;
 	i = 0;
 	while (pipex->envs[i])
 	{
@@ -35,8 +36,6 @@ void	notcmd(char *cmd)
 	ft_putstr_fd(cmd, 2);
 	ft_putstr_fd(":  ", 2);
 	ft_putstr_fd("command not found\n", 2);
-	
-	
 }
 
 char	**check_cmd(char *cmd, t_pipex *pipex)
@@ -53,18 +52,19 @@ char	**check_cmd(char *cmd, t_pipex *pipex)
 		return (NULL);
 	while (path[i])
 	{
-
 		tmp = ft_strjoin(path[i], "/");
 		tmp2 = ft_strjoin(tmp, cmd);
 		result = ft_split(tmp2, ' ');
 		free(tmp);
 		free(tmp2);
 		if (access(result[0], X_OK) == 0)
+		{
+			free_all(path);
 			return (result);
+		}
 		free_all(result);
 		i++;
 	}
-
 	notcmd(cmd);
 	return (free_all(path), NULL);
 }
