@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:06:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/20 17:57:23 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:08:32 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	openfiles(t_pipex *pipex)
 	pipex->infile_fd = open(pipex->avs[1], O_RDONLY);
 	if (pipex->infile_fd == -1)
 	{
+		pipex->infile_fd = 0;
 		ft_putstr_fd("\033[31mpipex: \e[0m", 2);
 		ft_putstr_fd(pipex->avs[1], 2);
 		ft_putstr_fd(":  ", 2);

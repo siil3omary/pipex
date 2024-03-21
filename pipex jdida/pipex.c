@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/21 05:43:59 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/21 19:48:17 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	main(int ac, char **av, char **env)
 	//  init args
 	initstrct(pipex, ac, av, env);
 	// pipex excute
-	pipe(pipex->pipe_fd);
 	openfiles(pipex);
+	pipe(pipex->pipe_fd);
 	while (pipex->index < ac - 3)
 	{
 		pipex->pid = fork();
@@ -49,13 +49,10 @@ int	main(int ac, char **av, char **env)
 		{
 			if (pipex->index == 0)
 			{
-				close(0);
+				close(pipex->fd)
 				dup2(pipex->infile_fd, 0);
 				dup2(pipex->pipe_fd[1], 1);
-				close(pipex->pipe_fd[1]);
-				close(pipex->infile_fd);
 				pipex->cmd = check_cmd(pipex->avs[pipex->index + 2], pipex);
-				printf("flag here");
 				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 				free_all(pipex->cmd);
 				free(pipex);
@@ -65,14 +62,11 @@ int	main(int ac, char **av, char **env)
 			{
 				if (pipex->index == pipex->acs - 4)
 				{
-				close(0);
 					close(pipex->pipe_fd[1]);
 					dup2(pipex->outfile_fd, 1);
 					dup2(pipex->pipe_fd[0], 0);
 					close(pipex->pipe_fd[0]);
-					close(pipex->outfile_fd);
 					pipex->cmd = check_cmd(pipex->avs[pipex->index + 2], pipex);
-					ft_putstr_fd(pipex->cmd[0], 2);
 					execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 					free(pipex);
 					free_all(pipex->cmd);
@@ -80,8 +74,8 @@ int	main(int ac, char **av, char **env)
 				}
 				else
 				{
-				close(0);
 
+					close(pipex->pipe_fd[0]);
 					dup2(pipex->pipe_fd[0], 0);
 					dup2(pipex->pipe_fd[1], 1);
 					close(pipex->pipe_fd[0]);
@@ -94,10 +88,11 @@ int	main(int ac, char **av, char **env)
 				}
 			}
 		}
+		
 		pipex->index++;
 	}
-	while (wait(&st) != -1)
-		pipex->status = WEXITSTATUS(st);
+	while(wait(pipex->status) == -1)
+	waitpid(pipex->pid, pipex->status, WNOHANG);
 	free(pipex);
 	return (0);
 }
