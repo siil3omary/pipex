@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/22 01:28:16 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/22 01:52:57 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	main(int ac, char **av, char **env)
 {
 	t_pipex	*pipex;
 	int		st;
-
 	if (ac < 5)
 	{
+		
 		if (ft_strcmp(av[1], "--help"))
 		{
 			ft_putstr_fd("\033[32mUsage: \e[0m", 1);
@@ -43,8 +43,12 @@ int	main(int ac, char **av, char **env)
 		exit(EXIT_FAILURE);
 	}
 	pipex = (t_pipex *)malloc(sizeof(t_pipex));
-	//  init args
 	initstrct(pipex, ac, av, env);
+	if(ft_strcmp(av[1] , "here_doc") && ac == 6)
+	{
+		
+	}else{
+	//  init args
 	// pipex excute
 	openfiles(pipex);
 	pipex->index = 2;
@@ -111,6 +115,8 @@ int	main(int ac, char **av, char **env)
 	}
 	while (wait(pipex->status) == -1)
 		waitpid(pipex->pid, pipex->status, WNOHANG);
+		
+	}
 	free(pipex);
 	return (0);
 }
