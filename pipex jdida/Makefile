@@ -1,7 +1,7 @@
 
 NAME        := pipex
 CC        := cc
-FLAGS    := #-Wall -Wextra -Werror 
+FLAGS    := #-fsanitize=address#-Wall -Wextra -Werror  
 
 SRCS        :=      srcs/utils2.c \
                           srcs/ft_strlcpy.c \

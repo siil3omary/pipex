@@ -55,14 +55,14 @@
     "/w14928"
   ],
   "C_Cpp_Runner.enableWarnings": true,
-"C_Cpp_Runner.warningsAsError": false,
-"python.testing.unittestArgs": [
-	"-v",
-	"-s",
-	"./srcs",
-	"-p",
-	"*test.py"
-],
-"python.testing.pytestEnabled": false,
-"python.testing.unittestEnabled": true
+  "C_Cpp_Runner.warningsAsError": false,
+  "python.testing.unittestArgs": [
+    "-v",
+    "-s",
+    "./srcs",
+    "-p",
+    "*test.py"
+  ],
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestEnabled": true
 }

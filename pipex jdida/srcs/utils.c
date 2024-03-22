@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:06:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/22 01:12:39 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:07:30 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	**get_path(t_pipex *pipex)
 		}
 		i++;
 	}
+
 	return (free_all(path), free(pipex), NULL);
 }
 void	notcmd(char *cmd)
@@ -49,7 +50,10 @@ char	**check_cmd(char *cmd, t_pipex *pipex)
 	i = 0;
 	path = get_path(pipex);
 	if (!path)
+	{
+		notcmd(cmd);	
 		return (NULL);
+	}
 	while (path[i])
 	{
 		tmp = ft_strjoin(path[i], "/");

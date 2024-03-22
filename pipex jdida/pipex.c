@@ -6,23 +6,12 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/22 01:52:57 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:08:20 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_putchar(char c)
-{
-	write(2, &c, 1);
-}
-
-void	ft_putnbr(int n)
-{
-	if (n > 9)
-		ft_putnbr(n / 10);
-	ft_putchar(n % 10 + '0');
-}
 
 int	main(int ac, char **av, char **env)
 {
@@ -44,12 +33,6 @@ int	main(int ac, char **av, char **env)
 	}
 	pipex = (t_pipex *)malloc(sizeof(t_pipex));
 	initstrct(pipex, ac, av, env);
-	if(ft_strcmp(av[1] , "here_doc") && ac == 6)
-	{
-		
-	}else{
-	//  init args
-	// pipex excute
 	openfiles(pipex);
 	pipex->index = 2;
 	while (pipex->index < ac - 1)
@@ -66,10 +49,6 @@ int	main(int ac, char **av, char **env)
 		{
 			if (pipex->index == 2)
 			{
-				if (pipex->infile_fd == -1){
-					pipex->infile_fd = STDIN_FILENO;
-					
-				}
 				close(pipex->pipe_fd[0]);
 				dup2(pipex->infile_fd, 0);
 				dup2(pipex->pipe_fd[1], 1);
@@ -77,8 +56,7 @@ int	main(int ac, char **av, char **env)
 				pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
 				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 				free_all(pipex->cmd);
-				free(pipex);
-				exit(1);
+				// free(pipex);
 			}
 			else if (pipex->index != ac - 2)
 			{
@@ -88,20 +66,17 @@ int	main(int ac, char **av, char **env)
 				pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
 				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 				free_all(pipex->cmd);
-				free(pipex);
-				exit(1);
+				// free(pipex);
 			}
 			else if (pipex->index == ac - 2)
 			{
 				close(pipex->pipe_fd[1]);
-				if (pipex->outfile_fd == -1)
-					ft_putstr_fd("hello\n", 2);
 				dup2(pipex->outfile_fd, 1);
 				close(pipex->pipe_fd[0]);
 				pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
 				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
-				free(pipex);
 				free_all(pipex->cmd);
+				// free(pipex);
 				exit(1);
 			}
 		}
@@ -116,7 +91,6 @@ int	main(int ac, char **av, char **env)
 	while (wait(pipex->status) == -1)
 		waitpid(pipex->pid, pipex->status, WNOHANG);
 		
-	}
 	free(pipex);
 	return (0);
 }
