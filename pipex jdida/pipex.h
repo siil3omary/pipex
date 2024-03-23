@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:36:20 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/19 20:09:16 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/23 05:03:12 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 typedef struct data
 {
-	int		*status;
+	int		status;
 	int		infile_fd;
 	int		outfile_fd;
 	int		acs;

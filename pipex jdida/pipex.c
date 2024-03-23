@@ -6,30 +6,42 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/22 18:08:20 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/23 06:09:42 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+void	myputnbr(int n)
+{
+	char	nb;
+
+	nb = n - '0';
+	write(2, &nb, 1);
+}
 
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	*pipex;
 	int		st;
-	if (ac < 5)
+	int		status;
+	int		exit_status;
+
+	if (ac > 5 || (ac == 2 && ft_strcmp(av[1], "--help")))
 	{
-		
 		if (ft_strcmp(av[1], "--help"))
 		{
 			ft_putstr_fd("\033[32mUsage: \e[0m", 1);
 			ft_putstr_fd("./pipex file1 cmd1 cmd2 file2", 1);
 			exit(EXIT_FAILURE);
 		}
-		ft_putstr_fd("\033[31mpipex: \e[0m", 2);
-		ft_putstr_fd("Bad argument", 2);
-		ft_putstr_fd("\n\t --help for help\n", 2);
-		exit(EXIT_FAILURE);
+		else
+		{
+			ft_putstr_fd("\033[31mpipex: \e[0m", 2);
+			ft_putstr_fd("Bad argument", 2);
+			ft_putstr_fd("\n\t --help for Usage\n", 2);
+			exit(EXIT_FAILURE);
+		}
 	}
 	pipex = (t_pipex *)malloc(sizeof(t_pipex));
 	initstrct(pipex, ac, av, env);
@@ -54,7 +66,12 @@ int	main(int ac, char **av, char **env)
 				dup2(pipex->pipe_fd[1], 1);
 				close(pipex->pipe_fd[1]);
 				pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
+				if (!pipex->cmd)
+				{
+					exit(0);
+				}
 				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
+				exit(127);
 				free_all(pipex->cmd);
 				// free(pipex);
 			}
@@ -64,8 +81,14 @@ int	main(int ac, char **av, char **env)
 				dup2(pipex->pipe_fd[1], 1);
 				close(pipex->pipe_fd[1]);
 				pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
-				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 				free_all(pipex->cmd);
+				if (!pipex->cmd)
+				{
+					exit(0);
+				}
+				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
+				exit(0);
+				exit(123);
 				// free(pipex);
 			}
 			else if (pipex->index == ac - 2)
@@ -74,10 +97,13 @@ int	main(int ac, char **av, char **env)
 				dup2(pipex->outfile_fd, 1);
 				close(pipex->pipe_fd[0]);
 				pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
+				if (!pipex->cmd)
+				{
+					exit(127);
+				}
 				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 				free_all(pipex->cmd);
 				// free(pipex);
-				exit(1);
 			}
 		}
 		else
@@ -85,12 +111,13 @@ int	main(int ac, char **av, char **env)
 			close(pipex->pipe_fd[1]);
 			dup2(pipex->pipe_fd[0], 0);
 			close(pipex->pipe_fd[0]);
+			 waitpid(pipex->pid, &pipex->status, 0);
+			exit_status = WEXITSTATUS(pipex->status);
 		}
 		pipex->index++;
 	}
-	while (wait(pipex->status) == -1)
-		waitpid(pipex->pid, pipex->status, WNOHANG);
-		
+
+	exit(exit_status);
 	free(pipex);
 	return (0);
 }
