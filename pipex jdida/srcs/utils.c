@@ -6,12 +6,28 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:06:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/23 02:21:52 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/23 22:29:34 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
+char	**check_excut(char *cmd)
+{
+	char	**result;
+
+	result = ft_split(cmd, ' ');
+	if ()
+	{
+	}
+	if (access(result[0], X_OK))
+	{
+		printf("%s", result[0]);
+		return (result);
+	}
+	free_all(result);
+	return (NULL);
+}
 char	**get_path(t_pipex *pipex)
 {
 	int		i;
@@ -48,6 +64,12 @@ char	**check_cmd(char *cmd, t_pipex *pipex)
 
 	i = 0;
 	path = get_path(pipex);
+	result = check_excut(cmd);
+	printf("%p", result);
+	if (result != NULL)
+	{
+		return (result);
+	}
 	if (!path)
 	{
 		notcmd(cmd);
@@ -83,8 +105,7 @@ void	openfiles(t_pipex *pipex)
 		perror("");
 	}
 	pipex->outfile_fd = open(pipex->avs[pipex->acs - 1],
-								O_WRONLY | O_CREAT | O_TRUNC,
-								0644);
+			O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (pipex->outfile_fd == -1)
 	{
 		ft_putstr_fd("\033[31mpipex: \e[0m", 2);

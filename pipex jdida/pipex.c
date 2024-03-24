@@ -6,28 +6,18 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/23 06:09:42 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:21:50 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	myputnbr(int n)
-{
-	char	nb;
-
-	nb = n - '0';
-	write(2, &nb, 1);
-}
-
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	*pipex;
-	int		st;
-	int		status;
 	int		exit_status;
 
-	if (ac > 5 || (ac == 2 && ft_strcmp(av[1], "--help")))
+	if (ac < 5 || (ac == 2 && ft_strcmp(av[1], "--help")))
 	{
 		if (ft_strcmp(av[1], "--help"))
 		{
@@ -111,12 +101,12 @@ int	main(int ac, char **av, char **env)
 			close(pipex->pipe_fd[1]);
 			dup2(pipex->pipe_fd[0], 0);
 			close(pipex->pipe_fd[0]);
-			 waitpid(pipex->pid, &pipex->status, 0);
 			exit_status = WEXITSTATUS(pipex->status);
 		}
 		pipex->index++;
 	}
-
+		while (wait(&pipex->status) != -1)
+		pipex->status = WEXITSTATUS(pipex->status);
 	exit(exit_status);
 	free(pipex);
 	return (0);

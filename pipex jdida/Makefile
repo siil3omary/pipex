@@ -1,23 +1,36 @@
+#  |  |  ___ \    \  |         |
+#  |  |     ) |  |\/ |   _  |  |  /   _ 
+# ___ __|  __/   |   |  (   |    <    __/ 
+#    _|  _____| _|  _| \__,_| _|\_\ \___|
+#                              by jcluzet
+################################################################################
+#                                     CONFIG                                   #
+################################################################################
 
 NAME        := pipex
 CC        := cc
-FLAGS    := #-fsanitize=address#-Wall -Wextra -Werror  
+FLAGS    := -Wall -Wextra -Werror 
+################################################################################
+#                                 PROGRAM'S SRCS                               #
+################################################################################
 
-SRCS        :=      srcs/utils2.c \
+SRCS        :=      pipex.c \
+                          srcs/ft_split.c \
+                          srcs/ft_strdup.c \
+                          srcs/ft_strjoin.c \
                           srcs/ft_strlcpy.c \
                           srcs/ft_strlen.c \
-                          srcs/ft_strjoin.c \
-                          srcs/ft_split.c \
                           srcs/utils.c \
-                          srcs/ft_strdup.c \
-                          pipex.c \
+                          srcs/utils2.c \
                           
 OBJS        := $(SRCS:.c=.o)
 
 .c.o:
-	@${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
-
+################################################################################
+#                                  Makefile  objs                              #
+################################################################################
 
 
 CLR_RMV		:= \033[0m
@@ -30,7 +43,7 @@ RM		    := rm -f
 
 ${NAME}:	${OBJS}
 			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
-			@${CC} ${FLAGS} -o ${NAME} ${OBJS}
+			${CC} ${FLAGS} -o ${NAME} ${OBJS}
 			@echo "$(GREEN)$(NAME) created[0m ✔️"
 
 all:		${NAME}
@@ -46,14 +59,6 @@ fclean:		clean
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
 re:			fclean all
-
-debug:
-			${CC} ${FLAGS}-fsanitize=address  -o ${NAME} ${OBJS} 
-push:
-			git add .
-			git commit -m "push"
-			git push
-			@echo "$(GREEN)Pushed to $(CYAN)origin $(CLR_RMV)✔️"
 
 .PHONY:		all clean fclean re
 
