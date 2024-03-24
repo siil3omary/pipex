@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 02:06:46 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/19 20:40:01 by aelomari         ###   ########.fr       */
+/*   Created: 2023/11/01 13:42:01 by aelomari          #+#    #+#             */
+/*   Updated: 2024/02/25 22:57:30 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../includes/pipex.h"
 
-char	*ft_strdup(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	char	*ptr;
-
-	ptr = (char *)malloc(ft_strlen(s) + 1);
-	if (ptr == NULL)
-		return (NULL);
-	ft_strlcpy(ptr, s, ft_strlen(s) + 1);
-	return (ptr);
+	size_t	len;
+if(s == NULL)
+    return (0);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }

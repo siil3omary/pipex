@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 02:06:46 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/19 20:40:01 by aelomari         ###   ########.fr       */
+/*   Created: 2023/11/07 01:24:47 by aelomari          #+#    #+#             */
+/*   Updated: 2023/11/26 13:12:42 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-char	*ft_strdup(const char *s)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*ptr;
+	unsigned char	*data;
 
-	ptr = (char *)malloc(ft_strlen(s) + 1);
-	if (ptr == NULL)
+	if (size != 0 && count > (18446744073709551615UL / size))
 		return (NULL);
-	ft_strlcpy(ptr, s, ft_strlen(s) + 1);
-	return (ptr);
+	data = malloc(count * size);
+	if (!data)
+		return (NULL);
+	ft_bzero(data, count * size);
+	return (data);
 }

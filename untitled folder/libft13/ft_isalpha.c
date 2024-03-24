@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 02:06:46 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/19 20:40:01 by aelomari         ###   ########.fr       */
+/*   Created: 2023/10/31 14:05:31 by aelomari          #+#    #+#             */
+/*   Updated: 2023/11/26 13:12:56 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-char	*ft_strdup(const char *s)
+int	ft_isalpha(int c)
 {
-	char	*ptr;
-
-	ptr = (char *)malloc(ft_strlen(s) + 1);
-	if (ptr == NULL)
-		return (NULL);
-	ft_strlcpy(ptr, s, ft_strlen(s) + 1);
-	return (ptr);
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
 }

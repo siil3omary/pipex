@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 14:17:53 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/20 17:55:25 by aelomari         ###   ########.fr       */
+/*   Created: 2023/11/17 17:38:44 by aelomari          #+#    #+#             */
+/*   Updated: 2023/11/26 13:14:17 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	size_t	i;
+	t_list	*current;
+	t_list	*next;
 
-	i = 0;
-	if (size > 0)
+	if (!lst || !del)
+		return ;
+	current = *lst;
+	while (current)
 	{
-		while (i < size - 1 && src[i])
-		{
-			dest[i] = src[i];
-			i++;
-		}
-		dest[i] = '\0';
+		next = current->next;
+		ft_lstdelone(current, del);
+		current = next;
 	}
-	while (src[i])
-	{
-		i++;
-	}
-	return (i);
+	*lst = NULL;
 }

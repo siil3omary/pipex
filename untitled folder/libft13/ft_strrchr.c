@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 14:17:53 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/20 17:55:25 by aelomari         ###   ########.fr       */
+/*   Created: 2023/11/03 17:04:15 by aelomari          #+#    #+#             */
+/*   Updated: 2023/12/31 14:52:11 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+char	*ft_strrchr(const char *str, int c)
 {
-	size_t	i;
+	char	*last_occurrence;
 
-	i = 0;
-	if (size > 0)
+	last_occurrence = NULL;
+	while (*str)
 	{
-		while (i < size - 1 && src[i])
+		if (*str == (char)c)
 		{
-			dest[i] = src[i];
-			i++;
+			last_occurrence = (char *)str;
 		}
-		dest[i] = '\0';
+		str++;
 	}
-	while (src[i])
+	if (*str == (char)c)
 	{
-		i++;
+		return ((char *)str);
 	}
-	return (i);
+	return (last_occurrence);
 }

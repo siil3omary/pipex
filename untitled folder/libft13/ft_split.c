@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:51:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/21 19:41:35 by aelomari         ###   ########.fr       */
+/*   Updated: 2023/12/31 14:09:46 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-size_t	word_count(const char *str, char c)
+static size_t	word_count(const char *str, char c)
 {
 	size_t	count;
 	size_t	i;
@@ -28,15 +28,11 @@ size_t	word_count(const char *str, char c)
 	return (count);
 }
 
-void	*free_all(char **sp)
+static void	*free_all(char **sp)
 {
 	size_t	j;
 
 	j = 0;
-	if (!sp || !sp[j])
-	{
-		return (NULL);
-	}
 	while (sp[j])
 	{
 		free(sp[j]);
@@ -46,7 +42,7 @@ void	*free_all(char **sp)
 	return (NULL);
 }
 
-static void	fill_split(char **split, char *s, char c)
+static void	fill_split(char **split, const char *s, char c)
 {
 	size_t	i;
 	size_t	j;
@@ -74,7 +70,7 @@ static void	fill_split(char **split, char *s, char c)
 	split[j] = NULL;
 }
 
-char	**ft_split(char *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**split;
 
@@ -86,3 +82,20 @@ char	**ft_split(char *s, char c)
 	fill_split(split, s, c);
 	return (split);
 }
+
+// int main(int argc, char const *argv[])
+// {
+// 	if (argc == 3)
+// 	{
+// 		int i = 0;
+// 		char **str = ft_split(argv[1] , argv[2][0]);
+// 		while (str[i] != NULL)
+// 		{
+// 			printf("%s\n" , str[i]);
+// 			i++;
+// 		}
+
+// 	}
+
+// 	return (0);
+// }
