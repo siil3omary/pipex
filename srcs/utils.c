@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:06:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/24 06:37:49 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:33:21 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char	**check_cmd(char *cmd, t_pipex *pipex)
 	result = check_excut(cmd);
 	if (result != NULL)
 	{
+		ft_putstr_fd("hello assa", 2);
 		return (result);
 	}
 	if (!path)

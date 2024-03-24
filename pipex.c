@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/23 21:21:50 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:39:46 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	*pipex;
-	int		exit_status;
 
 	if (ac < 5 || (ac == 2 && ft_strcmp(av[1], "--help")))
 	{
@@ -71,15 +70,14 @@ int	main(int ac, char **av, char **env)
 				dup2(pipex->pipe_fd[1], 1);
 				close(pipex->pipe_fd[1]);
 				pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
-				free_all(pipex->cmd);
 				if (!pipex->cmd)
 				{
 					exit(0);
 				}
 				execve(pipex->cmd[0], pipex->cmd, pipex->envs);
+				free_all(pipex->cmd);
 				exit(0);
 				exit(123);
-				// free(pipex);
 			}
 			else if (pipex->index == ac - 2)
 			{
@@ -98,16 +96,13 @@ int	main(int ac, char **av, char **env)
 		}
 		else
 		{
+			// exit_status = WEXITSTATUS(pipex->status);
 			close(pipex->pipe_fd[1]);
 			dup2(pipex->pipe_fd[0], 0);
 			close(pipex->pipe_fd[0]);
-			exit_status = WEXITSTATUS(pipex->status);
 		}
 		pipex->index++;
 	}
-		while (wait(&pipex->status) != -1)
-		pipex->status = WEXITSTATUS(pipex->status);
-	exit(exit_status);
 	free(pipex);
 	return (0);
 }
