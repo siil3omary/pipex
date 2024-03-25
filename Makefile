@@ -20,6 +20,7 @@ SRCS        :=      pipex.c \
                           srcs/ft_strjoin.c \
                           srcs/ft_strlcpy.c \
                           srcs/ft_strlen.c \
+						  srcs/childs.c \
                           srcs/utils.c \
                           srcs/utils2.c \
                           

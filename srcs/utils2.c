@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 19:38:41 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/25 00:51:32 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:25:35 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,21 @@ void	initstrct(t_pipex *pipex, int ac, char **av, char **env)
 	pipex->index = 0;
 	pipex->infile_fd = 0;
 	pipex->index = 2;
+}
+
+void	error_args(char **av)
+{
+	if (ft_strcmp(av[1], "--help"))
+	{
+		ft_putstr_fd("\033[32mUsage: \e[0m", 1);
+		ft_putstr_fd("./pipex file1 cmd1 cmd2 file2", 1);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		ft_putstr_fd("\033[31mpipex: \e[0m", 2);
+		ft_putstr_fd("Bad argument", 2);
+		ft_putstr_fd("\n\t --help for Usage\n", 2);
+		exit(EXIT_FAILURE);
+	}
 }

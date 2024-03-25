@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:06:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/25 01:00:51 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:32:37 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	**check_excut(char *cmd)
 	free_all(result);
 	return (NULL);
 }
+
 char	**get_path(t_pipex *pipex)
 {
 	int		i;
@@ -43,6 +44,7 @@ char	**get_path(t_pipex *pipex)
 	}
 	return (free_all(path), free(pipex), NULL);
 }
+
 void	notcmd(char *cmd)
 {
 	ft_putstr_fd("\033[31mpipex: \e[0m", 2);
@@ -65,10 +67,7 @@ char	**check_cmd(char *cmd, t_pipex *pipex)
 	if (result != NULL)
 		return (result);
 	if (!path)
-	{
-		notcmd(cmd);
-		return (NULL);
-	}
+		return (notcmd(cmd), NULL);
 	while (path[i])
 	{
 		tmp = ft_strjoin(path[i], "/");
@@ -77,15 +76,11 @@ char	**check_cmd(char *cmd, t_pipex *pipex)
 		free(tmp);
 		free(tmp2);
 		if (access(result[0], X_OK) == 0)
-		{
-			free_all(path);
-			return (result);
-		}
+			return (free_all(path), result);
 		free_all(result);
 		i++;
 	}
-	notcmd(cmd);
-	return (free_all(path), NULL);
+	return (notcmd(cmd), free_all(path), NULL);
 }
 
 void	openfiles(t_pipex *pipex)
