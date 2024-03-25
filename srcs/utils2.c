@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 19:38:41 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/20 17:55:18 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/25 00:40:12 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,6 @@ void	initstrct(t_pipex *pipex, int ac, char **av, char **env)
 	pipex->envs = env;
 	pipex->index = 0;
 	pipex->infile_fd = 0;
+	pipex->index = 2;
+	openfiles(pipex);
 }
