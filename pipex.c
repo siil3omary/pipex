@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/25 00:43:02 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/25 00:52:22 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,29 @@ void	fork_error(void)
 	ft_putstr_fd("fork failed", 2);
 	exit(EXIT_FAILURE);
 }
-void	error_arg(t_pipex *pipex)
-{
-	if (ft_strcmp(pipex->avs[1], "--help"))
-	{
-		ft_putstr_fd("\033[32mUsage: \e[0m", 1);
-		ft_putstr_fd("./pipex file1 cmd1 cmd2 file2", 1);
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		ft_putstr_fd("\033[31mpipex: \e[0m", 2);
-		ft_putstr_fd("Bad argument", 2);
-		ft_putstr_fd("\n\t --help for Usage\n", 2);
-		exit(EXIT_FAILURE);
-	}
-}
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	*pipex;
 
-
-	pipex = (t_pipex *)malloc(sizeof(t_pipex));
-	initstrct(pipex, ac, av, env);
 	if (ac < 5 || (ac == 2 && ft_strcmp(av[1], "--help")))
 	{
-		error_arg(pipex);
+		if (ft_strcmp(av[1], "--help"))
+		{
+			ft_putstr_fd("\033[32mUsage: \e[0m", 1);
+			ft_putstr_fd("./pipex file1 cmd1 cmd2 file2", 1);
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			ft_putstr_fd("\033[31mpipex: \e[0m", 2);
+			ft_putstr_fd("Bad argument", 2);
+			ft_putstr_fd("\n\t --help for Usage\n", 2);
+			exit(EXIT_FAILURE);
+		}
 	}
+	pipex = (t_pipex *)malloc(sizeof(t_pipex));
+	initstrct(pipex, ac, av, env);
+	openfiles(pipex);
 	while (pipex->index < ac - 1)
 	{
 		pipe(pipex->pipe_fd);
@@ -107,7 +103,6 @@ int	main(int ac, char **av, char **env)
 		}
 		pipex->index++;
 	}
-
 	exit(pipex->status);
 	free(pipex);
 	return (0);
