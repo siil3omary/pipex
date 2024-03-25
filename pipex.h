@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:36:20 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/23 05:03:12 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/25 02:35:08 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,11 @@ char		**check_cmd(char *cmd, t_pipex *pipex);
 int			ft_strcmp(char *s1, char *s2);
 size_t		ft_strlcpy(char *dest, const char *src, size_t size);
 size_t		ft_strlen(const char *s);
+void		ft_pipex(t_pipex *pipex);
+void		fork_error(void);
+void		last_child(t_pipex *pipex);
+void		secend_child(t_pipex *pipex);
+void		first_child(t_pipex *pipex);
+void		error_args(char **av);
 
 #endif // PIPEX_H
