@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/aelomari/Desktop/pipex_9dima",
-      "program": "/Users/aelomari/Desktop/pipex_9dima/build/Debug/outDebug"
+      "cwd": "/Users/aelomari/Desktop/pipex_9dima/pipex jdida",
+      "program": "/Users/aelomari/Desktop/pipex_9dima/pipex jdida/build/Debug/outDebug"
     }
   ]
 }

@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+	/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
@@ -21,7 +21,6 @@ void	fork_error(void)
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	*pipex;
-
 	if (ac < 5 || (ac == 2 && ft_strcmp(av[1], "--help")))
 	{
 		if (ft_strcmp(av[1], "--help"))
@@ -103,6 +102,11 @@ int	main(int ac, char **av, char **env)
 		}
 		pipex->index++;
 	}
+	while ((wait(&pipex->status)) != -1)
+	{
+		pipex->status = WEXITSTATUS(pipex->status);
+	}
+	
 	exit(pipex->status);
 	free(pipex);
 	return (0);
