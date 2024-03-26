@@ -6,11 +6,11 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:17:53 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/20 17:55:25 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:34:22 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "pipex.h"
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {

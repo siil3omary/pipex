@@ -6,11 +6,11 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 02:06:46 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 21:34:14 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:32:48 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 char	*ft_strdup(const char *s)
 {

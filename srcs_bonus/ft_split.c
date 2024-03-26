@@ -6,11 +6,11 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:51:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 21:34:10 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:32:43 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 size_t	word_count(const char *str, char c)
 {

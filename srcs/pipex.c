@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 17:46:56 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:26:10 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av, char **env)
 {
 	t_pipex	*pipex;
 
-	if (ac < 5 || (ac == 2 && ft_strcmp(av[1], "--help")))
+	if (ac != 5 || (ac == 2 && ft_strcmp(av[1], "--help")))
 		error_args(av);
 	pipex = (t_pipex *)malloc(sizeof(t_pipex));
 	initstrct(pipex, ac, av, env);

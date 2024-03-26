@@ -1,37 +1,36 @@
-#  |  |  ___ \    \  |         |
-#  |  |     ) |  |\/ |   _  |  |  /   _ 
-# ___ __|  __/   |   |  (   |    <    __/ 
-#    _|  _____| _|  _| \__,_| _|\_\ \___|
-#                              by jcluzet
-################################################################################
-#                                     CONFIG                                   #
-################################################################################
 
 NAME        := pipex
+BNAME       := pipex_bonus
 CC        := cc
 FLAGS    := -Wall -Wextra -Werror 
-################################################################################
-#                                 PROGRAM'S SRCS                               #
-################################################################################
 
-SRCS        :=      pipex.c \
+SRCS        :=      srcs/pipex.c \
+                          srcs/childs.c \
                           srcs/ft_split.c \
                           srcs/ft_strdup.c \
                           srcs/ft_strjoin.c \
                           srcs/ft_strlcpy.c \
                           srcs/ft_strlen.c \
-						  srcs/childs.c \
                           srcs/utils.c \
                           srcs/utils2.c \
+
+BSRCS        :=      srcs_bonus/pipex_bonus.c \
+						  srcs_bonus/childs_bonus.c \
+						  srcs_bonus/ft_split.c \
+						  srcs_bonus/ft_strdup.c \
+						  srcs_bonus/ft_strjoin.c \
+						  srcs_bonus/ft_strlcpy.c \
+						  srcs_bonus/ft_strlen.c \
+						  srcs_bonus/utils2_bonus.c \
+						  srcs_bonus/utils_bonus.c \
                           
 OBJS        := $(SRCS:.c=.o)
+
+BOBJS        := $(BSRCS:.c=.o)
 
 .c.o:
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
-################################################################################
-#                                  Makefile  objs                              #
-################################################################################
 
 
 CLR_RMV		:= \033[0m
@@ -47,16 +46,20 @@ ${NAME}:	${OBJS}
 			${CC} ${FLAGS} -o ${NAME} ${OBJS}
 			@echo "$(GREEN)$(NAME) created[0m ✔️"
 
+${BNAME}:	${BOBJS}
+			@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(BNAME) ${CLR_RMV}..."
+			${CC} ${FLAGS} -o ${BNAME} ${BOBJS}
+			@echo "$(GREEN)$(BNAME) created[0m ✔️"
 all:		${NAME}
 
-bonus:		all
+bonus:		${BNAME}
 
 clean:
 			@ ${RM} *.o */*.o */*/*.o
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
 
 fclean:		clean
-			@ ${RM} ${NAME}
+			@ ${RM} ${NAME} ${BNAME}
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
 re:			fclean all

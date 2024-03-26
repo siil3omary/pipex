@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   utils2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 19:38:41 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 21:34:42 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/26 21:33:49 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	ft_putstr_fd(char *str, int fd)
 {
@@ -79,7 +79,8 @@ void	error_args(char **av)
 	if (ft_strcmp(av[1], "--help"))
 	{
 		ft_putstr_fd("\033[32mUsage: \e[0m", 1);
-		ft_putstr_fd("./pipex infile cmd1 cmd2 outfile\n", 1);
+		ft_putstr_fd("./pipex_bonus infile cmd1 cmd2 cmd3 ... cmdn outfile\n",
+			1);
 		system("leaks pipex");
 		exit(EXIT_FAILURE);
 	}
