@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:06:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/25 17:32:37 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/26 01:06:56 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,17 @@ char	**check_cmd(char *cmd, t_pipex *pipex)
 
 	i = 0;
 	path = get_path(pipex);
-	result = check_excut(cmd);
-	if (result != NULL)
-		return (result);
 	if (!path)
 		return (notcmd(cmd), NULL);
+	result = check_excut(cmd);
+	if (result)
+		return (result);
 	while (path[i])
 	{
 		tmp = ft_strjoin(path[i], "/");
 		tmp2 = ft_strjoin(tmp, cmd);
-		result = ft_split(tmp2, ' ');
 		free(tmp);
+		result = ft_split(tmp2, ' ');
 		free(tmp2);
 		if (access(result[0], X_OK) == 0)
 			return (free_all(path), result);
