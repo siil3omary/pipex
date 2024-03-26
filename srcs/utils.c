@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:06:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 21:34:34 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/26 23:54:25 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,27 @@ char	**check_cmd(char *cmd, t_pipex *pipex)
 void	openfiles(t_pipex *pipex)
 {
 	pipex->infile_fd = open(pipex->avs[1], O_RDONLY);
+	if (access(pipex->avs[1], F_OK) == 0)
+	{
+		pipex->outfile_fd = open(pipex->avs[pipex->acs - 1],
+				O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (pipex->outfile_fd == -1)
+		{
+			error_file(pipex->avs[pipex->acs - 1]);
+			perror("");
+		}
+	}
 	if (pipex->infile_fd == -1)
 	{
-		ft_putstr_fd("\033[31mpipex: \e[0m", 2);
-		ft_putstr_fd(pipex->avs[1], 2);
-		ft_putstr_fd(":  ", 2);
+		error_file(pipex->avs[1]);
 		perror("");
+		exit(EXIT_FAILURE);
 	}
 	pipex->outfile_fd = open(pipex->avs[pipex->acs - 1],
 			O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (pipex->outfile_fd == -1)
 	{
-		ft_putstr_fd("\033[31mpipex: \e[0m", 2);
-		ft_putstr_fd(pipex->avs[pipex->acs - 1], 2);
-		ft_putstr_fd(":  ", 2);
+		error_file(pipex->avs[pipex->acs - 1]);
 		perror("");
 	}
 }

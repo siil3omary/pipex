@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 17:20:07 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 21:32:38 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/26 23:31:04 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	fork_error(void)
 {
 	ft_putstr_fd("\033[31mpipex: \e[0m", 2);
 	ft_putstr_fd("fork failed", 2);
-	system("leaks pipex");
 	exit(EXIT_FAILURE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 19:38:41 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 21:33:49 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/26 23:31:19 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	error_args(char **av)
 		ft_putstr_fd("\033[32mUsage: \e[0m", 1);
 		ft_putstr_fd("./pipex_bonus infile cmd1 cmd2 cmd3 ... cmdn outfile\n",
 			1);
-		system("leaks pipex");
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -89,7 +88,6 @@ void	error_args(char **av)
 		ft_putstr_fd("\033[31mpipex: \e[0m", 2);
 		ft_putstr_fd("Bad argument", 2);
 		ft_putstr_fd("\n\t --help for Usage\n", 2);
-		system("leaks pipex");
 		exit(EXIT_FAILURE);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:36:20 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/25 02:35:08 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/03/26 23:48:49 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void		last_child(t_pipex *pipex);
 void		secend_child(t_pipex *pipex);
 void		first_child(t_pipex *pipex);
 void		error_args(char **av);
+void		error_file(char *str);
 
 #endif // PIPEX_H

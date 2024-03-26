@@ -11,8 +11,9 @@ SRCS        :=      srcs/pipex.c \
                           srcs/ft_strjoin.c \
                           srcs/ft_strlcpy.c \
                           srcs/ft_strlen.c \
-                          srcs/utils.c \
+                          srcs/utils3.c \
                           srcs/utils2.c \
+                          srcs/utils.c \
 
 BSRCS        :=      srcs_bonus/pipex_bonus.c \
 						  srcs_bonus/childs_bonus.c \
@@ -22,6 +23,7 @@ BSRCS        :=      srcs_bonus/pipex_bonus.c \
 						  srcs_bonus/ft_strlcpy.c \
 						  srcs_bonus/ft_strlen.c \
 						  srcs_bonus/utils2_bonus.c \
+						  srcs_bonus/utils3_bonus.c \
 						  srcs_bonus/utils_bonus.c \
                           
 OBJS        := $(SRCS:.c=.o)
