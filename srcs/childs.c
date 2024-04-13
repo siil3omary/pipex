@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   childs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 17:20:07 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 23:30:28 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/13 19:10:09 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	last_child(t_pipex *pipex)
 	pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
 	execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 	free_all(pipex->cmd);
+	exit(128);
 }
 
 void	secend_child(t_pipex *pipex)
@@ -56,6 +57,7 @@ void	secend_child(t_pipex *pipex)
 	pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
 	execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 	free_all(pipex->cmd);
+	exit(127);
 }
 
 void	first_child(t_pipex *pipex)
@@ -67,4 +69,5 @@ void	first_child(t_pipex *pipex)
 	pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
 	execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 	free_all(pipex->cmd);
+	exit(126);
 }

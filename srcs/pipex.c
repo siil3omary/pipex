@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 23:47:03 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/13 21:03:41 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,17 @@ int	main(int ac, char **av, char **env)
 	}
 	while ((wait(&pipex->status)) != -1)
 		pipex->status = WEXITSTATUS(pipex->status);
+		
+
+
+	
+		printf("%d\n", pipex->status);
+	// while ((waitpid(pipex->pid, &pipex->status, 0) != -1))
+	// 	if (pipex->status == 0)
+	// 		pipex->status = WEXITSTATUS(pipex->status);
+	// printf("%d" , pipex->status);
 	exit(pipex->status);
+	
 	free(pipex);
 	return (0);
 }
