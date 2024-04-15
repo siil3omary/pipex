@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   childs_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 17:20:07 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 23:31:04 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/15 19:47:36 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,12 @@ void	last_child(t_pipex *pipex)
 	dup2(pipex->outfile_fd, 1);
 	close(pipex->pipe_fd[0]);
 	pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
+	if (!pipex->cmd)
+	{
+		free_all(pipex->cmd);
+		exit(127);
+	}
 	execve(pipex->cmd[0], pipex->cmd, pipex->envs);
-	free_all(pipex->cmd);
 }
 
 void	secend_child(t_pipex *pipex)
@@ -54,8 +58,12 @@ void	secend_child(t_pipex *pipex)
 	dup2(pipex->pipe_fd[1], 1);
 	close(pipex->pipe_fd[1]);
 	pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
+	if (!pipex->cmd)
+	{
+		free_all(pipex->cmd);
+		exit(0);
+	}
 	execve(pipex->cmd[0], pipex->cmd, pipex->envs);
-	free_all(pipex->cmd);
 }
 
 void	first_child(t_pipex *pipex)
@@ -65,6 +73,10 @@ void	first_child(t_pipex *pipex)
 	dup2(pipex->pipe_fd[1], 1);
 	close(pipex->pipe_fd[1]);
 	pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
+	if (!pipex->cmd)
+	{
+		free_all(pipex->cmd);
+		exit(0);
+	}
 	execve(pipex->cmd[0], pipex->cmd, pipex->envs);
-	free_all(pipex->cmd);
 }
