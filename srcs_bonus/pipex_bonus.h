@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:36:20 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 23:39:43 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:45:03 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,4 @@ void		first_child(t_pipex *pipex);
 void		error_args(char **av);
 void		error_file(char *str);
 
-#endif // PIPEX_H
+#endif // PIPEX_BONUS_H

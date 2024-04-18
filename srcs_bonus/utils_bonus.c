@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:06:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/15 20:19:08 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:17:37 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	**get_path(t_pipex *pipex)
 	char	**path;
 
 	path = NULL;
+	if (pipex->envs == NULL)
+		return (free(pipex), NULL);
 	i = 0;
 	while (pipex->envs[i])
 	{

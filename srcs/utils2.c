@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 19:38:41 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 23:30:58 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:45:52 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	initstrct(t_pipex *pipex, int ac, char **av, char **env)
 	pipex->acs = ac;
 	pipex->avs = av;
 	pipex->envs = env;
-	pipex->index = 0;
 	pipex->infile_fd = 0;
 	pipex->index = 2;
 }
