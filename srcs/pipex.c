@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/20 18:54:24 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:11:59 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	*pipex;
-	// int		proccess_id;
 
 	if (ac != 5 || (ac == 2 && ft_strcmp(av[1], "--help")))
 		error_args(av);

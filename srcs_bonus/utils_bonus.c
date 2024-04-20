@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:06:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/18 15:17:37 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:15:18 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	**check_excut(char *cmd)
 	char	**result;
 
 	result = ft_split(cmd, ' ');
-	if (access(result[0], F_OK & X_OK) == 0)
+	if (access(result[0], F_OK | X_OK) == 0)
 		return (result);
 	free_all(result);
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:10:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/18 14:46:11 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:13:06 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	*pipex;
-	int		proccess_id;
 
 	if (ac < 5 || (ac == 2 && ft_strcmp(av[1], "--help")))
 		error_args(av);
@@ -31,10 +30,13 @@ int	main(int ac, char **av, char **env)
 		ft_pipex(pipex);
 		pipex->index++;
 	}
-	while (1)
+	int st;
+	int proccess_id = 4;
+	while (proccess_id != -1)
 	{
 		proccess_id = wait(&pipex->status);
 		if (proccess_id == pipex->pid)
-			return (free_all(pipex->cmd), WEXITSTATUS(pipex->status));
+			st =WEXITSTATUS(pipex->status);
 	}
+	return (free_all(pipex->cmd), st);
 }

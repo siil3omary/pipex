@@ -1,6 +1,6 @@
 Makefile
+ls
 out
 pipex
-pipex_bonus
 srcs
 srcs_bonus
