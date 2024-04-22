@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:36:20 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/18 14:45:03 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/21 09:09:06 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct data
 	int		index;
 	char	**avs;
 	char	**envs;
+	int		process_id;
 	pid_t	pid;
 	char	**cmd;
 

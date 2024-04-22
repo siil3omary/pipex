@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:36:20 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 23:48:49 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/21 09:08:24 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct data
 	char	**avs;
 	char	**envs;
 	pid_t	pid;
+	int		process_id;
 	char	**cmd;
 
 }			t_pipex;

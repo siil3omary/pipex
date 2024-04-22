@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:06:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/20 20:15:10 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:39:44 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,15 @@ void	openfiles(t_pipex *pipex)
 	{
 		error_file(pipex->avs[1]);
 		perror("");
-	}
+	}	
 	pipex->outfile_fd = open(pipex->avs[pipex->acs - 1],
 			O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (pipex->outfile_fd == -1)
 	{
 		error_file(pipex->avs[pipex->acs - 1]);
 		perror("");
+		// close(1);
+		// close(2);
 	}
+
 }
