@@ -1,5 +1,9 @@
 Makefile
+PIPEX_TESTER
 out
+outfile
+outt
 pipex
 srcs
 srcs_bonus
+test-xx.txt

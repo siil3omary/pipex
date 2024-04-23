@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 09:05:16 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/22 15:28:56 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:45:30 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ int	main(int ac, char **av, char **env)
 		if (pipex->process_id == pipex->pid)
 			st = WEXITSTATUS(pipex->status);
 	}
-	return (free_all(pipex->cmd), st);
+	return (st);
 }

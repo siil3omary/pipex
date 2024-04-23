@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:06:31 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/22 15:39:44 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:16:35 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ void	openfiles(t_pipex *pipex)
 	{
 		error_file(pipex->avs[pipex->acs - 1]);
 		perror("");
-		// close(1);
-		// close(2);
 	}
 
 }

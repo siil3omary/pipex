@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelomari <aelomari@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:51:30 by aelomari          #+#    #+#             */
-/*   Updated: 2024/03/26 21:34:10 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:42:14 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	*free_all(char **sp)
 	size_t	j;
 
 	j = 0;
-	if (!sp || !sp[j])
-	{
-		return (NULL);
-	}
+	// if (!sp || !sp[j])
+	// {
+	// 	return (NULL);
+	// }
 	while (sp[j])
 	{
 		free(sp[j]);
@@ -45,7 +45,6 @@ void	*free_all(char **sp)
 	free(sp);
 	return (NULL);
 }
-
 static void	fill_split(char **split, char *s, char c)
 {
 	size_t	i;

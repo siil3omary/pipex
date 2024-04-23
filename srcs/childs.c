@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 17:20:07 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/22 15:42:09 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:47:24 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	fork_error(void)
 
 void	last_child(t_pipex *pipex)
 {
+	if(pipex->outfile_fd == -1)
+		exit(1);
 	close(pipex->pipe_fd[1]);
 	dup2(pipex->outfile_fd, 1);
 	close(pipex->pipe_fd[0]);
@@ -53,6 +55,8 @@ void	last_child(t_pipex *pipex)
 
 void	first_child(t_pipex *pipex)
 {
+	if(pipex->infile_fd == -1)
+		exit(0);
 	close(pipex->pipe_fd[0]);
 	dup2(pipex->infile_fd, 0);
 	dup2(pipex->pipe_fd[1], 1);

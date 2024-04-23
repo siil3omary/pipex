@@ -2,7 +2,7 @@
 NAME        := pipex
 BNAME       := pipex_bonus
 CC        := cc
-FLAGS    := -Wall -Wextra -Werror 
+FLAGS    := -Wall -Wextra -Werror -g -fsanitize=address
 
 SRCS        :=      srcs/pipex.c \
                           srcs/childs.c \
