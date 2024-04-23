@@ -6,7 +6,7 @@
 /*   By: aelomari <aelomari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 17:20:07 by aelomari          #+#    #+#             */
-/*   Updated: 2024/04/22 18:47:24 by aelomari         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:51:01 by aelomari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ void	last_child(t_pipex *pipex)
 	close(pipex->pipe_fd[0]);
 	pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
 	if (!pipex->cmd)
-	{
-		free_all(pipex->cmd);
 		exit(127);
-	}
 	execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 	exit(127);
 }
@@ -63,10 +60,7 @@ void	first_child(t_pipex *pipex)
 	close(pipex->pipe_fd[1]);
 	pipex->cmd = check_cmd(pipex->avs[pipex->index], pipex);
 	if (!pipex->cmd)
-	{
-		free_all(pipex->cmd);
 		exit(0);
-	}
 	execve(pipex->cmd[0], pipex->cmd, pipex->envs);
 	exit(0);
 }
